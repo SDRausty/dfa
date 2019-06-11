@@ -1,0 +1,17 @@
+#!/bin/bash
+# Copyright 2018 by SDRausty. All rights reserved.  🌎 🌍 🌏 🌐 🗺
+# Website for this project at https://sdrausty.github.io/dfa
+# Spinoff based on https://github.com/sdrausty/TermuxArch/issues/37 No such or file directory when setting Arch Linux up in Termux PRoot.
+# This script does a very simple test for checking disk space on Android, Chromebook and Fire OS. 
+
+space=`df /storage/emulated/0 | awk '{print $4}' | sed '2q;d'`
+printf $space
+if [ $space == *G ];then
+	Message="All is quiet."
+else
+	Message="Start thinking about cleaning out some stuff.  There's a partition that has just $space."
+fi
+
+printf "\n$Message\n"
+printf "\nDate Message\n"
+printf "\nDisk report $space on `date`\n"
